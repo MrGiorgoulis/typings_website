@@ -1,0 +1,9 @@
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/libaws_smithy_xml-d0a0cdcf8636517d.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/decode.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/encode.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/escape.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/unescape.rs
+
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/aws_smithy_xml-d0a0cdcf8636517d.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/decode.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/encode.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/escape.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/unescape.rs
+
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/lib.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/decode.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/encode.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/escape.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-xml-0.38.0/src/unescape.rs:

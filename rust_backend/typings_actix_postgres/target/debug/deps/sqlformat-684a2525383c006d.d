@@ -1,0 +1,10 @@
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/libsqlformat-684a2525383c006d.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/formatter.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/indentation.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/inline_block.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/params.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/tokenizer.rs
+
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/sqlformat-684a2525383c006d.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/formatter.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/indentation.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/inline_block.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/params.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/tokenizer.rs
+
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/lib.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/formatter.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/indentation.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/inline_block.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/params.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sqlformat-0.2.6/src/tokenizer.rs:
