@@ -28,6 +28,10 @@ body{
     color: rgb(227, 217, 198);
 }
 
+a {
+    text-decoration: none;
+}
+
 .command-center{
     line-height: 1.6rem;
     font-size:1rem ;
@@ -107,4 +111,87 @@ body{
     top: 10px;
     right: 20px;
     cursor: pointer;
-  }
+}
+
+section{
+    display: flex;
+    flex-direction:column;
+    background-size: 130%;
+    background-position: 50% 85%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c0af;
+    width: 370px;
+    height: auto;
+    position: relative;
+    border: none;
+    /* border: 2px solid black; */
+    border-radius: 0.4rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.form-inside{
+    text-align: left;
+    padding-left: 8%;
+
+}
+
+.label{
+    color: #575d5e;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    margin-bottom: 9px;
+    margin-left: 15px;
+    margin-top: 0;
+    display: inline-block;
+}
+.mail-icon{
+    margin: 0;
+    padding-top: 10px;
+}
+.input-box{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid #575d5e;
+}
+a:link{
+    color: red;
+}
+
+.email-box, .password-box, .confirm-password-box {
+    background: transparent;
+    border: none;
+    font-family: Roboto Mono;
+    height: 1.5rem;
+    margin-bottom: 1vh;
+
+}
+
+.confirm-label {
+    color: #e96920;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    margin-left: 15px;
+    margin-top: 0;
+    display: inline-block;
+}
+
+.login-register-header {
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-family: Roboto Mono;
+    font-size: 1.5rem;
+    color: #e96920;
+}

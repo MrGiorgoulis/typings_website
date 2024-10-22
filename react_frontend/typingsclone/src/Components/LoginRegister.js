@@ -4,30 +4,63 @@ function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="login-register">
-      <h2>{isLogin ? 'Login' : 'Register'}</h2>
-      <form>
-        <div>
-          <label>Email:</label>
-          <input type="email" placeholder="Enter your email" />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" placeholder="Enter your password" />
-        </div>
-        {!isLogin && (
-          <div>
-            <label>Confirm Password:</label>
-            <input type="password" placeholder="Confirm your password" />
-          </div>
-        )}
-        <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
-      </form>
-      <button onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'Create an account' : 'Already have an account?'}
-      </button>
-    </div>
+	<section>
+		<h2  class="login-register-header">{isLogin ? 'login' : 'register'}</h2>
+		<div class="form-box">
+			<div class="form-inside">
+				<form action="">
+					<div class="input-box">
+						<p class="label">email:  </p>
+						<input type="email" class="email-box" required />
+					</div>
+					<div class="input-box">
+						<p class="label">password: </p>
+						<input type="password" class="password-box" required/>
+					</div>
+					{!isLogin && (
+						<div class="input-box">
+							<p class="label">confirm: </p>
+							<input type="email" class="confirm-password-box" required/>
+						</div>
+					)}
+					<button type="submit">{isLogin ? 'login' : 'register'}</button>
+				</form>                
+			</div>
+		</div>
+		<button onClick={() => setIsLogin(!isLogin)}>
+			{isLogin ? 'create an account' : 'already have an account?'}
+		</button>    
+	</section>
   );
 }
 
 export default LoginRegister;
+
+
+		// <section>
+		// 	<div className="login-register">
+		// 		<h2 class="header">{isLogin ? 'login' : 'register'}</h2>
+		// 		<div class="form-inside">
+		// 			<form class="form-box">
+		// 				<div class="input-box">
+		// 					<p class="label">email: </p>
+		// 					<input type="email" class="email-box" required/>
+		// 				</div>
+		// 				<div class="input-box">
+		// 					<p class="label">password: </p>
+		// 					<input type="email" class="password-box" required/>
+		// 				</div>
+		// 					{!isLogin && (
+		// 						<div class="input-box">
+		// 							<p class="label">confirm password: </p>
+		// 						<input type="email" class="password-box" required/>
+		// 						</div>
+		// 					)}
+		// 					<button type="submit">{isLogin ? 'login' : 'register'}</button>
+		// 					<button onClick={() => setIsLogin(!isLogin)}>
+		// 					{isLogin ? 'create an account' : 'already have an account?'}
+		// 				</button>
+		// 				</form>
+		// 			</div>
+		// 	</div>
+		// </section>

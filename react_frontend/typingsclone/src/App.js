@@ -3,9 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom' // Use Bro
 import "./styles.css"
 import CommandCenter from './Components/CommandCenter';
 import LoginRegister from './Components/LoginRegister';
-import { FaUserCircle } from 'react-icons/fa';
-
-export const IsTimerActive = React.createContext()
+import { FaUser } from "react-icons/fa";export const IsTimerActive = React.createContext()
 export const SetStopTimer = React.createContext()
 export const ElapsedTimeContext = React.createContext()
 export const SetElapsedTimeContext = React.createContext()
@@ -23,12 +21,14 @@ function App() {
   return (
     <BrowserRouter> {/* Updated */}
       <div className="typer">
-        <div className="header">
-          Typer
-          <Link to="/login">
-            <FaUserCircle className="account-icon" />
-          </Link>
-        </div>
+        <Link to="/">
+          <div className="header">
+            Typer
+            <Link to="/login">
+              <FaUser className="account-icon" color='#c9c0af' />
+            </Link>
+          </div>
+        </Link>
         <SetElapsedTimeContext.Provider value={setElapsedTime}>
           <ElapsedTimeContext.Provider value={elapsedTime}>
             <WpmContext.Provider value={wpm}>
