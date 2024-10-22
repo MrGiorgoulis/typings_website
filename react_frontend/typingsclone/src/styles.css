@@ -125,12 +125,12 @@ section{
 }
 
 .form-box{
+    align-items: center;
     display: flex;
     flex-direction: column;
     background-color: #c9c0af;
     width: 370px;
     height: auto;
-    position: relative;
     border: none;
     /* border: 2px solid black; */
     border-radius: 0.4rem;
@@ -139,19 +139,21 @@ section{
 }
 
 .form-inside{
+    align-items: center;
     text-align: left;
-    padding-left: 8%;
-
+    width: 80%;
 }
 
 .label{
+    text-align: left;
     color: #575d5e;
     font-family: Roboto Mono;
     font-size: 1rem;
-    margin-bottom: 9px;
-    margin-left: 15px;
+    margin-bottom: 0;
     margin-top: 0;
     display: inline-block;
+    width: 30%;
+
 }
 .mail-icon{
     margin: 0;
@@ -159,11 +161,14 @@ section{
 }
 .input-box{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     position: relative;
     margin: 30px 0;
     width: 300px;
     border-bottom: 2px solid #575d5e;
+    text-align: right;
+
+
 }
 a:link{
     color: red;
@@ -171,20 +176,14 @@ a:link{
 
 .email-box, .password-box, .confirm-password-box {
     background: transparent;
+    /* border: dashed 2px #808687; */
     border: none;
     font-family: Roboto Mono;
     height: 1.5rem;
     margin-bottom: 1vh;
+    width: 68%;
+    border-radius: 0.2rem;
 
-}
-
-.confirm-label {
-    color: #e96920;
-    font-family: Roboto Mono;
-    font-size: 1rem;
-    margin-left: 15px;
-    margin-top: 0;
-    display: inline-block;
 }
 
 .login-register-header {
@@ -194,4 +193,32 @@ a:link{
     font-family: Roboto Mono;
     font-size: 1.5rem;
     color: #e96920;
+}
+
+.login-register-button {
+    font-family: Roboto Mono;
+    height: 2rem;
+    background-color: #e96920;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.main-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-register-switch {
+
+    font-family: Roboto Mono;
+    background-color: #c9c0af;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+    width: 30%;
 }
