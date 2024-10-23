@@ -1,0 +1,10 @@
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/libuntrusted-c067bfcf954ed769.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/input.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/no_panic.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/reader.rs
+
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/libuntrusted-c067bfcf954ed769.rlib: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/input.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/no_panic.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/reader.rs
+
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/untrusted-c067bfcf954ed769.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/input.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/no_panic.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/reader.rs
+
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/lib.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/input.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/no_panic.rs:
+/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/untrusted-0.9.0/src/reader.rs:

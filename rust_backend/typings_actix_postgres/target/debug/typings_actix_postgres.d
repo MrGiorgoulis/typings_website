@@ -1,0 +1,1 @@
+/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/typings_actix_postgres: /home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/src/main.rs
