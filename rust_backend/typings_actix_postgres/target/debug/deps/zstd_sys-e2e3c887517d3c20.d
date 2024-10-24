@@ -1,9 +1,0 @@
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/libzstd_sys-e2e3c887517d3c20.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zstd.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zdict.rs
-
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/libzstd_sys-e2e3c887517d3c20.rlib: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zstd.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zdict.rs
-
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/distributed_systems/rust_backend/typings_actix_postgres/target/debug/deps/zstd_sys-e2e3c887517d3c20.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zstd.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zdict.rs
-
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/lib.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zstd.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zstd-sys-2.0.13+zstd.1.5.6/src/bindings_zdict.rs:

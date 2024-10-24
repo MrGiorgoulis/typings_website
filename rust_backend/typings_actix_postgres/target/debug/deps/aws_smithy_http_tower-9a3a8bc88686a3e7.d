@@ -1,8 +1,0 @@
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/libaws_smithy_http_tower-9a3a8bc88686a3e7.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/dispatch.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/map_request.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/parse_response.rs
-
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/aws_smithy_http_tower-9a3a8bc88686a3e7.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/dispatch.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/map_request.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/parse_response.rs
-
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/lib.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/dispatch.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/map_request.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/aws-smithy-http-tower-0.38.0/src/parse_response.rs:

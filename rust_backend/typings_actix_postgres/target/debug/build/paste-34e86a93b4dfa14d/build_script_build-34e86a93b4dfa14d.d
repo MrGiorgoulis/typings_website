@@ -1,5 +1,0 @@
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/build/paste-34e86a93b4dfa14d/build_script_build-34e86a93b4dfa14d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/paste-1.0.15/build.rs
-
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/build/paste-34e86a93b4dfa14d/build_script_build-34e86a93b4dfa14d.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/paste-1.0.15/build.rs
-
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/paste-1.0.15/build.rs:

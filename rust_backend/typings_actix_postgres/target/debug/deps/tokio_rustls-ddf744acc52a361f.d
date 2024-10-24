@@ -1,9 +1,0 @@
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/libtokio_rustls-ddf744acc52a361f.rmeta: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/client.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/mod.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/handshake.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/server.rs
-
-/home/kurgiorgis/Desktop/Home_Projects/rust_projects/typings_actix_postgres/target/debug/deps/tokio_rustls-ddf744acc52a361f.d: /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/lib.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/client.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/mod.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/handshake.rs /home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/server.rs
-
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/lib.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/client.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/mod.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/common/handshake.rs:
-/home/kurgiorgis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-rustls-0.23.4/src/server.rs:
