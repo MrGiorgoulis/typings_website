@@ -203,6 +203,7 @@ a:link{
     border-radius: 0.3rem;
     font-size: 1rem;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 .main-form {
@@ -220,5 +221,6 @@ a:link{
     border-radius: 0.2rem;
     font-size: 0.8rem;
     margin-top: 0.7rem;
-    width: 30%;
+    width: max-content;
+    cursor: pointer;
 }
