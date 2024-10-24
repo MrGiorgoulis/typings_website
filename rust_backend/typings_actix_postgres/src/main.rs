@@ -1,14 +1,68 @@
-use actix_web::{get, web, App, HttpServer, Responder};
+mod handlers;
+mod model;
+mod repository;
+
+use actix_web::{web, App, HttpServer};
+use handlers::handlers::register_user;
+use model::{
+    game::{Game, NewGame},
+    user::NewUser,
+};
+use repository::database::{create_pg_pool, create_user, get_user, update_history};
+use sqlx::types::Uuid;
+use std::{error::Error, str::FromStr};
 
 #[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| App::new().service(greet))
-        .bind(("127.0.0.1", 8080))?
-        .run()
-        .await
-}
+async fn main() -> Result<(), Box<dyn Error>> {
+    std::env::set_var("RUST_LOG", "debug");
+    std::env::set_var("RUST_BACKTRACE", "1");
+    env_logger::init();
 
-#[get("/hello/{name}")]
-async fn greet(name: web::Path<String>) -> impl Responder {
-    format!("Hello {name}!")
+    let pool = create_pg_pool().await;
+
+    sqlx::migrate!("./migrations").run(&pool).await?;
+
+    // CREATE USER
+    // let user = NewUser::new("katzos".to_string(), "hashPasswd".to_string());
+    // let res = create_user(user, &pool).await;
+    //
+    // match &res {
+    //     Ok(_) => {}
+    //     Err(e) => println!("User creation failed: {:}", e),
+    // }
+
+    // GET USER
+    // let res = get_user("katzos".to_string(), &pool).await;
+
+    // match &res {
+    //     Ok(_) => {
+    //         print!("{:?}", res.unwrap());
+    //     }
+    //     Err(e) => println!("No user returned: {:?}", e),
+    // }
+
+    let game = NewGame::new(
+        Uuid::from_str("c7c1a005-4091-4f76-9b01-f151a6e16663").unwrap(),
+        105.0,
+        60,
+    );
+
+    let res = update_history(game, &pool).await;
+    match &res {
+        Ok(_) => {
+            println!("Game Registered Successfully")
+        }
+        Err(e) => println!("Game NOT Registered: {:?}", e),
+    }
+
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(pool.clone()))
+            .service(register_user)
+    })
+    .bind(("127.0.0.1", 8080))?
+    .run()
+    .await?;
+
+    Ok(())
 }
