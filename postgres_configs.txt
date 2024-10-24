@@ -1,6 +1,36 @@
-docker run -p 5432:5432 -d
--e POSTGRES_PASSWORD=postgres
--e POSTGRES_USER=postgres
--e POSTGRES_DB=typings_users
--v pgdata:/var/lib/postgresql/data
+docker run -p 5432:5432 -d \
+-e POSTGRES_PASSWORD=postgres \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_DB=typings_users \
+-v pgdata:/var/lib/postgresql/data \
 postgres
+
+
+user table config
+CREATE TABLE users (
+    user_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_name VARCHAR(255) NOT NULL UNIQUE,
+    total_games INT DEFAULT 0,
+    WPM_average FLOAT DEFAULT 0,
+    WPM_best FLOAT DEFAULT 0,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role VARCHAR(50) DEFAULT 'user'
+);
+
+
+CREATE TABLE game_history (
+    user_uuid UUID NOT NULL,
+    game_number INT NOT NULL,
+    WPM FLOAT NOT NULL,
+    time INT NOT NULL,  -- time in seconds or minutes, adjust as needed
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_uuid, game_number),
+    FOREIGN KEY (user_uuid) REFERENCES users(user_uuid) ON DELETE CASCADE
+);
+
+TO SEE TABLES
+docker exec -it <container name> /bin/sh
+psql -h localhost -U postgres -d your_database_name
+\dt
+
