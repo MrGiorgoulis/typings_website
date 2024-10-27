@@ -15,14 +15,14 @@ pub struct User {
     pub role: String,
 }
 
-pub struct NewUser {
+pub struct UserAuth {
     pub name: String,
     pub passwd_hash: String,
 }
 
-impl NewUser {
-    pub fn new(name: String, passwd_hash: String) -> NewUser {
-        NewUser { name, passwd_hash }
+impl UserAuth {
+    pub fn new(name: String, passwd_hash: String) -> UserAuth {
+        UserAuth { name, passwd_hash }
     }
 }
 

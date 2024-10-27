@@ -6,7 +6,7 @@ use std::env;
 use strum::Display;
 
 use crate::model::game::NewGame;
-use crate::model::user::{NewUser, User};
+use crate::model::user::{UserAuth, User};
 
 #[derive(Debug, Display)]
 pub enum UserError {
@@ -20,14 +20,15 @@ pub enum GameError {
 }
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let database_url = "postgres://postgres:postgres@127.0.0.1:5432/typings_users";
+    // let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     PgPoolOptions::new()
         .connect(&database_url)
         .await
         .expect("Failed to create pool")
 }
-pub async fn create_user(user: NewUser, pool: &sqlx::PgPool) -> Result<(), UserError> {
+pub async fn create_user(user: &UserAuth, pool: &sqlx::PgPool) -> Result<(), UserError> {
     let query = "INSERT INTO users (user_name, password_hash) VALUES ($1, $2)";
     let res = sqlx::query(query)
         .bind(&user.name)
@@ -36,18 +37,22 @@ pub async fn create_user(user: NewUser, pool: &sqlx::PgPool) -> Result<(), UserE
         .await;
 
     match res {
-        Ok(_) => Ok(()),
+        Ok(_) => {
+            println!("{:?}", res);
+            Ok(())
+        },
         Err(_) => Err(UserError::UserCreationFailed),
     }
 }
 
-pub async fn get_user(user_name: String, pool: &sqlx::PgPool) -> Result<User, UserError> {
-    let q = "SELECT * FROM users WHERE user_name = $1";
-    let query = sqlx::query(q).bind(user_name);
+pub async fn get_user(user_name: String, user_passswd_hash: String, pool: &sqlx::PgPool) -> Result<User, UserError> {
+    let q = "SELECT * FROM users WHERE user_name = $1 AND password_hash = $2";
+    let query = sqlx::query(q).bind(user_name).bind(user_passswd_hash);
     let row = query.fetch_one(pool).await;
 
     match row {
         Ok(_) => {
+            println!("USER RETRIEVED");
             let row = row.unwrap();
             let user = User::new(
                 row.get::<Uuid, _>("user_uuid"),
@@ -61,7 +66,7 @@ pub async fn get_user(user_name: String, pool: &sqlx::PgPool) -> Result<User, Us
             );
             Ok(user)
         }
-        Err(_) => Err(UserError::UserNotFound),
+        Err(_) => {println!("USER NOT RETRIEVED");Err(UserError::UserNotFound)},
     }
 }
 

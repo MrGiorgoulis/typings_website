@@ -2,11 +2,12 @@ mod handlers;
 mod model;
 mod repository;
 
+use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
-use handlers::handlers::register_user;
+use handlers::handlers::{login_user, post_game, register_user};
 use model::{
     game::{Game, NewGame},
-    user::NewUser,
+    user::UserAuth,
 };
 use repository::database::{create_pg_pool, create_user, get_user, update_history};
 use sqlx::types::Uuid;
@@ -56,9 +57,17 @@ async fn main() -> Result<(), Box<dyn Error>> {
     }
 
     HttpServer::new(move || {
-        App::new()
+        App::new().wrap(
+            Cors::default()
+            .allow_any_origin()
+            .allowed_methods(vec!["GET", "POST", "PUT"])
+            .allow_any_header()
+            .max_age(36000)
+        )
             .app_data(web::Data::new(pool.clone()))
             .service(register_user)
+            .service(login_user)
+            .service(post_game)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
