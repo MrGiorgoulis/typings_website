@@ -5,6 +5,8 @@ docker run -p 5432:5432 -d \
 -v pgdata:/var/lib/postgresql/data \
 postgres
 
+postgres://postgres:postgres@127.0.0.1:5432/typings_users
+
 
 user table config
 CREATE TABLE users (
@@ -20,10 +22,10 @@ CREATE TABLE users (
 
 
 CREATE TABLE game_history (
-    user_uuid UUID NOT NULL,
+    user_uuid UUID,
     game_number INT NOT NULL,
     WPM FLOAT NOT NULL,
-    time INT NOT NULL,  -- time in seconds or minutes, adjust as needed
+    time FLOAT NOT NULL,  -- time in seconds or minutes, adjust as needed
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_uuid, game_number),
     FOREIGN KEY (user_uuid) REFERENCES users(user_uuid) ON DELETE CASCADE
