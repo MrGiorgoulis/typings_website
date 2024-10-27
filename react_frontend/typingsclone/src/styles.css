@@ -124,6 +124,20 @@ section{
     height: 400px;
 }
 
+.profile-box{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c0af;
+    width: 370px;
+    height: auto;
+    border: none;
+    /* border: 2px solid black; */
+    border-radius: 0.4rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
 .form-box{
     align-items: center;
     display: flex;
@@ -193,6 +207,7 @@ a:link{
     font-family: Roboto Mono;
     font-size: 1.5rem;
     color: #e96920;
+    text-decoration: none;
 }
 
 .login-register-button {
@@ -223,4 +238,40 @@ a:link{
     margin-top: 0.7rem;
     width: max-content;
     cursor: pointer;
+}
+
+.home-link {
+    color: #c9c0af;
+}
+
+.profile-box {
+    font-family: Roboto Mono;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    background-color: #c9c0af;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.profile-label {
+font-size: 18px;
+margin-bottom: 8px;
+color: #e96920;
+}
+
+.profile-value {
+font-size: 16px;
+font-weight: bold;
+color: #555;
+}
+
+.divider {
+width: 100%;
+border: none;
+border-top: 1px solid #575d5e;
+margin: 12px 0;
 }
