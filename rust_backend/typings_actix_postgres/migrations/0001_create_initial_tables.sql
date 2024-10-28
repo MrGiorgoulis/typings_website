@@ -29,9 +29,15 @@ RETURNS INT AS $$
 DECLARE
     next_number INT;
 BEGIN
-    SELECT COALESCE(MAX(game_number), -1) + 1 INTO next_number
-    FROM game_history
-    WHERE user_uuid = user_id;
+    IF user_id IS NULL THEN
+        -- Handle anonymous case, e.g., assign a unique number or use a sequence
+        next_number := nextval('game_number_seq');
+    ELSE
+        -- Increment game_number per user
+        SELECT COALESCE(MAX(game_number), -1) + 1 INTO next_number
+        FROM game_history
+        WHERE user_uuid = user_id;
+    END IF;
 
     RETURN next_number;
 END;

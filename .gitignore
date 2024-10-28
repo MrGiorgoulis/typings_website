@@ -1,0 +1,4 @@
+/react_frontend/typingsclone/node_modules/
+/rust_backend/typings_actix_postgres/target/
+*.rs.bk
+*.swp
