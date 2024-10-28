@@ -68,10 +68,11 @@ function SettingsBar() {
     const computedAcc = (correctWords / wordCount) * 100; // Accuracy calculation
 
     const userData = {
-      user_uuid: user_uuid,
+      user_uuid:user_uuid,
       wpm: computedWpm,
       time: elapsedTime,
     };
+
 
     setWpm(computedWpm);
     setAcc(computedAcc);

@@ -30,11 +30,11 @@ impl Game {
 pub struct NewGame {
     pub user_uuid: Uuid,
     pub wpm: f64,
-    pub time: i32,
+    pub time: f64,
 }
 
 impl NewGame {
-    pub fn new(user_uuid: Uuid, wpm: f64, time: i32) -> NewGame {
+    pub fn new(user_uuid: Uuid, wpm: f64, time: f64) -> NewGame {
         NewGame {
             user_uuid,
             wpm,

@@ -6,7 +6,7 @@ use std::env;
 use strum::Display;
 
 use crate::model::game::NewGame;
-use crate::model::user::{UserAuth, User};
+use crate::model::user::{User, UserAuth};
 
 #[derive(Debug, Display)]
 pub enum UserError {
@@ -40,12 +40,16 @@ pub async fn create_user(user: &UserAuth, pool: &sqlx::PgPool) -> Result<(), Use
         Ok(_) => {
             println!("{:?}", res);
             Ok(())
-        },
+        }
         Err(_) => Err(UserError::UserCreationFailed),
     }
 }
 
-pub async fn get_user(user_name: String, user_passswd_hash: String, pool: &sqlx::PgPool) -> Result<User, UserError> {
+pub async fn get_user(
+    user_name: String,
+    user_passswd_hash: String,
+    pool: &sqlx::PgPool,
+) -> Result<User, UserError> {
     let q = "SELECT * FROM users WHERE user_name = $1 AND password_hash = $2";
     let query = sqlx::query(q).bind(user_name).bind(user_passswd_hash);
     let row = query.fetch_one(pool).await;
@@ -66,16 +70,21 @@ pub async fn get_user(user_name: String, user_passswd_hash: String, pool: &sqlx:
             );
             Ok(user)
         }
-        Err(_) => {println!("USER NOT RETRIEVED");Err(UserError::UserNotFound)},
+        Err(_) => {
+            println!("USER NOT RETRIEVED");
+            Err(UserError::UserNotFound)
+        }
     }
 }
 
 pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {
     let query = "INSERT INTO game_history (user_uuid, WPM, time) VALUES ($1, $2, $3)";
+    println!("{:?} {:?} {:?}", game.user_uuid, game.wpm, game.time);
+    println!("{}", game.time / 10.0);
     let res = sqlx::query(query)
         .bind(game.user_uuid)
         .bind(game.wpm)
-        .bind(game.time)
+        .bind(game.time / 10.0)
         .execute(pool)
         .await;
 

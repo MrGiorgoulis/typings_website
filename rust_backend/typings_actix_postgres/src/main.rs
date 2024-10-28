@@ -4,7 +4,7 @@ mod repository;
 
 use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
-use handlers::handlers::{login_user, post_game, register_user};
+use handlers::handlers::{get_anonymous, login_user, post_game, register_user};
 use model::{
     game::{Game, NewGame},
     user::UserAuth,
@@ -41,33 +41,20 @@ async fn main() -> Result<(), Box<dyn Error>> {
     //     }
     //     Err(e) => println!("No user returned: {:?}", e),
     // }
-
-    let game = NewGame::new(
-        Uuid::from_str("c7c1a005-4091-4f76-9b01-f151a6e16663").unwrap(),
-        105.0,
-        60,
-    );
-
-    let res = update_history(game, &pool).await;
-    match &res {
-        Ok(_) => {
-            println!("Game Registered Successfully")
-        }
-        Err(e) => println!("Game NOT Registered: {:?}", e),
-    }
-
     HttpServer::new(move || {
-        App::new().wrap(
-            Cors::default()
-            .allow_any_origin()
-            .allowed_methods(vec!["GET", "POST", "PUT"])
-            .allow_any_header()
-            .max_age(36000)
-        )
+        App::new()
+            .wrap(
+                Cors::default()
+                    .allow_any_origin()
+                    .allowed_methods(vec!["GET", "POST", "PUT"])
+                    .allow_any_header()
+                    .max_age(36000),
+            )
             .app_data(web::Data::new(pool.clone()))
             .service(register_user)
             .service(login_user)
             .service(post_game)
+            .service(get_anonymous)
     })
     .bind(("127.0.0.1", 8080))?
     .run()

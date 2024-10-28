@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"; // Use BrowserRouter
 import "./styles.css";
 import CommandCenter from "./Components/CommandCenter";
@@ -6,6 +6,9 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
 import { FaUser } from "react-icons/fa";
+import axios from "axios";
+
+
 export const IsTimerActive = React.createContext();
 export const SetStopTimer = React.createContext();
 export const ElapsedTimeContext = React.createContext();
@@ -29,6 +32,33 @@ function App() {
   const [isWordValid, setIsWordValid] = useState([]);
   const [userUuid, setUserUuid] = useState(null);
   const [user_name, setuser_name] = useState("");
+
+  useEffect(() => {
+    const handleLogin = async (e) => {
+      // e.preventDefault(); // Prevent form submission and page reload
+  
+      try {
+        const response = await axios.get("http://localhost:8080/get_anonymous", {
+          params: {
+            user_name: '',
+            user_passwd_hash: ''
+          },
+        });
+        setUserUuid(response.data.uuid);
+        setuser_name(response.data.name);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error Setting Default User in:", error.message); // Log only the error message
+        if (error.response) {
+          console.error("Server responded with:", error.response.data); // Log server's error response
+        }
+      }
+  
+      // e.preventDefault();
+    };
+
+    handleLogin();
+  }, []); // The empty array ensures this effect runs only once
 
   return (
     <BrowserRouter>
