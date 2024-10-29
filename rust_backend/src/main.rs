@@ -22,25 +22,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let pool = create_pg_pool().await;
 
     sqlx::migrate!("./migrations").run(&pool).await?;
-
-    // CREATE USER
-    // let user = NewUser::new("katzos".to_string(), "hashPasswd".to_string());
-    // let res = create_user(user, &pool).await;
-    //
-    // match &res {
-    //     Ok(_) => {}
-    //     Err(e) => println!("User creation failed: {:}", e),
-    // }
-
-    // GET USER
-    // let res = get_user("katzos".to_string(), &pool).await;
-
-    // match &res {
-    //     Ok(_) => {
-    //         print!("{:?}", res.unwrap());
-    //     }
-    //     Err(e) => println!("No user returned: {:?}", e),
-    // }
     HttpServer::new(move || {
         App::new()
             .wrap(

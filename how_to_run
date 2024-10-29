@@ -1,0 +1,29 @@
+
+-Prerequisites
+Rust: Ensure you have Rust installed. You can install it using rustup.
+Node.js: Install Node.js from nodejs.org.
+Docker: Install Docker.
+
+-STEP 1: Initialize the Postgres Database
+run:
+docker run -p 5432:5432 -d \
+-e POSTGRES_PASSWORD=postgres \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_DB=typings_users \
+-v pgdata:/var/lib/postgresql/data \
+postgres
+
+-STEP 2: Start the backend
+inside the backend directory run:
+cargo run
+
+-STEP 3: Start the frontend
+inside the frontend directory run: 
+npm start
+
+-INSPECT DATABSE: connect to the postgres container to see the state of the db.
+run: docker exec -it <container name> /bin/sh
+run: psql -h localhost -U postgres -d typings_users
+run: \dt to see all active relations
+
+

@@ -1,4 +1,5 @@
-/react_frontend/typingsclone/node_modules/
-/rust_backend/typings_actix_postgres/target/
+/react_frontend/node_modules/
+/rust_backend/target/
 *.rs.bk
 *.swp
+/postgres_configs.txt
