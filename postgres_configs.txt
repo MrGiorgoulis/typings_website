@@ -1,4 +1,4 @@
-docker run -p 5432:5432 -d \
+docker run --name typings_postgres -p 5432:5432 -d \
 -e POSTGRES_PASSWORD=postgres \
 -e POSTGRES_USER=postgres \
 -e POSTGRES_DB=typings_users \
@@ -32,7 +32,7 @@ CREATE TABLE game_history (
 );
 
 TO SEE TABLES
-docker exec -it <container name> /bin/sh
-psql -h localhost -U postgres -d your_database_name
+docker exec -it typings_postgres /bin/sh
+psql -h localhost -U postgres -d typings_users
 \dt
 
