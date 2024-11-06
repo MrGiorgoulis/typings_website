@@ -29,7 +29,7 @@ pub struct PostGameRequest {
 
 #[get("/get_anonymous")]
 pub async fn get_anonymous(
-    query: web::Query<UserRequest>, // Use query extractor
+    _query: web::Query<UserRequest>, // Use query extractor
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
     match get_user_by_name("Anonymous".to_string(), "".to_string(), &pool).await {
@@ -132,6 +132,6 @@ pub async fn post_game(
 
     match update_history(new_game, &pool).await {
         Ok(_) => HttpResponse::Created().body("Game Registered Successfully"),
-        Err(e) => HttpResponse::BadRequest().body("Failed to Register Game"),
+        Err(_) => HttpResponse::BadRequest().body("Failed to Register Game"),
     }
 }

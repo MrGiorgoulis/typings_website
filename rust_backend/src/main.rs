@@ -5,13 +5,8 @@ mod repository;
 use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
 use handlers::handlers::{get_anonymous, login_user, post_game, register_user};
-use model::{
-    game::{Game, NewGame},
-    user::UserAuth,
-};
-use repository::database::{create_pg_pool, create_user, get_user_by_name, update_history};
-use sqlx::types::Uuid;
-use std::{error::Error, str::FromStr};
+use repository::database::create_pg_pool;
+use std::error::Error;
 
 #[actix_web::main]
 async fn main() -> Result<(), Box<dyn Error>> {

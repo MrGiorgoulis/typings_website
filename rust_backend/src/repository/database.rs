@@ -118,10 +118,17 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
         .execute(pool)
         .await;
 
-    update_stats(game, pool).await;
 
     match res {
-        Ok(_) => Ok(()),
+        Ok(_) => {
+            match update_stats(game, pool).await {
+                Ok(_) => {},
+                Err(e) => {
+                    eprintln!{"Error updating user stats: {}", e}
+                }
+            }
+            Ok(())
+        },
         Err(_) => Err(GameError::GameNotRegistered),
     }
 }
@@ -142,16 +149,22 @@ pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Game
                 new_wpm_best = user.wpm_best;
             }
 
-
-            let query = "UPDATE users SET wpm_average=$1 / (total_games + 1)  WHERE user_uuid=$2";
-            let res = sqlx::query(query).bind(new_wpm_average).bind(user.uuid).execute(pool).await;
-
-            let query = "UPDATE users SET total_games=$1 WHERE user_uuid=$2";
-            let res = sqlx::query(query).bind(new_total).bind(game.user_uuid).execute(pool).await;
-
-            let query = "UPDATE users SET wpm_best=$1 WHERE user_uuid=$2";
-            let res = sqlx::query(query).bind(new_wpm_best).bind(game.user_uuid).execute(pool).await;
-        
+            let query = "
+                UPDATE users 
+                SET 
+                    wpm_average = $1 / (total_games + 1),
+                    total_games = $2,
+                    wpm_best = $3
+                WHERE user_uuid = $4
+            ";
+            let res = sqlx::query(query)
+                .bind(new_wpm_average)
+                .bind(new_total)
+                .bind(new_wpm_best)
+                .bind(game.user_uuid)
+                .execute(pool)
+                .await;
+            
             println!("{:?}", res);
             match res {
                 Ok(_) => Ok(()),
