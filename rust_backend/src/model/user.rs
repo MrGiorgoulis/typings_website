@@ -1,6 +1,4 @@
-use crate::handlers::handlers;
 use chrono::NaiveDateTime;
-use serde::{Deserialize, Serialize};
 use sqlx::types::Uuid;
 
 #[derive(Debug)]
