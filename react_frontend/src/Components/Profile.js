@@ -6,13 +6,15 @@ function Profile() {
   const user_name = useContext(UserNameContext);
 
   return (
-    <section>
+    <section className="profile-container">
       <div className="profile-box">
-        <h2 className="profile-label">Profile Name</h2>
-        <p className="profile-value">{user_name}</p>
-        <hr className="divider" />
-        <h2 className="profile-label">UUID</h2>
-        <p className="profile-value">{userUuid}</p>
+        <h2 className="profile-label">{user_name}</h2>
+
+        <div className="stats-box">
+          <p>total games: 12</p>
+          <p>average WPM: 103.98</p>
+          <p>best WPM: 150</p>
+        </div>
       </div>
     </section>
   );

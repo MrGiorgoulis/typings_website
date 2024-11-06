@@ -11,7 +11,7 @@ use sqlx::types::Uuid;
 
 use crate::{
     model::{game::NewGame, user::UserAuth},
-    repository::database::{create_user, get_user, update_history},
+    repository::database::{create_user, get_user_by_name, update_history},
 };
 
 #[derive(Deserialize, Serialize)]
@@ -32,7 +32,7 @@ pub async fn get_anonymous(
     query: web::Query<UserRequest>, // Use query extractor
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
-    match get_user("Anonymous".to_string(), "".to_string(), &pool).await {
+    match get_user_by_name("Anonymous".to_string(), "".to_string(), &pool).await {
         Ok(user) => {
             let response_body = json!({
                 "uuid": user.uuid.to_string(),
@@ -58,7 +58,7 @@ pub async fn login_user(
         "{:?}            {:?}",
         &query.user_name, &query.user_passwd_hash
     );
-    match get_user(
+    match get_user_by_name(
         query.user_name.clone(),
         query.user_passwd_hash.clone(),
         &pool,
@@ -90,7 +90,7 @@ pub async fn register_user(
     let new_user = UserAuth::new(request.user_name.clone(), request.user_passwd_hash.clone());
 
     match create_user(&new_user, pool.get_ref()).await {
-        Ok(_) => match get_user(
+        Ok(_) => match get_user_by_name(
             new_user.name.clone(),
             new_user.passwd_hash.clone(),
             pool.get_ref(),

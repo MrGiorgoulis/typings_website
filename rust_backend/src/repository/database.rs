@@ -1,8 +1,7 @@
 use chrono::NaiveDateTime;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::types::Uuid;
-use sqlx::{Pool, Postgres, Row};
-use std::env;
+use sqlx::{ Pool, Postgres, Row};
 use strum::Display;
 
 use crate::model::game::NewGame;
@@ -45,13 +44,44 @@ pub async fn create_user(user: &UserAuth, pool: &sqlx::PgPool) -> Result<(), Use
     }
 }
 
-pub async fn get_user(
+pub async fn get_user_by_name(
     user_name: String,
     user_passswd_hash: String,
     pool: &sqlx::PgPool,
 ) -> Result<User, UserError> {
     let q = "SELECT * FROM users WHERE user_name = $1 AND password_hash = $2";
     let query = sqlx::query(q).bind(user_name).bind(user_passswd_hash);
+    let row = query.fetch_one(pool).await;
+
+    match row {
+        Ok(_) => {
+            println!("USER RETRIEVED");
+            let row = row.unwrap();
+            let user = User::new(
+                row.get::<Uuid, _>("user_uuid"),
+                row.get("user_name"),
+                row.get("total_games"),
+                row.get("wpm_average"),
+                row.get("wpm_best"),
+                row.get("password_hash"),
+                row.get::<NaiveDateTime, _>("created_at"),
+                row.get("role"),
+            );
+            Ok(user)
+        }
+        Err(_) => {
+            println!("USER NOT RETRIEVED");
+            Err(UserError::UserNotFound)
+        }
+    }
+}
+
+pub async fn get_user_by_uuid(
+    user_uuid: Uuid,
+    pool: &sqlx::PgPool,
+) -> Result<User, UserError> {
+    let q = "SELECT * FROM users WHERE user_uuid = $1";
+    let query = sqlx::query(q).bind(user_uuid);
     let row = query.fetch_one(pool).await;
 
     match row {
@@ -88,8 +118,48 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
         .execute(pool)
         .await;
 
+    update_stats(game, pool).await;
+
     match res {
         Ok(_) => Ok(()),
         Err(_) => Err(GameError::GameNotRegistered),
     }
+}
+
+pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {
+
+    let active_user = get_user_by_uuid(game.user_uuid, pool).await;
+    
+    match active_user {
+        Ok(user) => {
+            let new_wpm_average = (user.wpm_avg * user.total_games as f64 + game.wpm) / (user.total_games + 1) as f64;
+            println!("{}", new_wpm_average);
+            let new_total = user.total_games + 1;
+            let new_wpm_best;
+            if user.wpm_best < game.wpm {
+                new_wpm_best = game.wpm;
+            } else {
+                new_wpm_best = user.wpm_best;
+            }
+
+
+            let query = "UPDATE users SET wpm_average=$1 / (total_games + 1)  WHERE user_uuid=$2";
+            let res = sqlx::query(query).bind(new_wpm_average).bind(user.uuid).execute(pool).await;
+
+            let query = "UPDATE users SET total_games=$1 WHERE user_uuid=$2";
+            let res = sqlx::query(query).bind(new_total).bind(game.user_uuid).execute(pool).await;
+
+            let query = "UPDATE users SET wpm_best=$1 WHERE user_uuid=$2";
+            let res = sqlx::query(query).bind(new_wpm_best).bind(game.user_uuid).execute(pool).await;
+        
+            println!("{:?}", res);
+            match res {
+                Ok(_) => Ok(()),
+                Err(_) => Err(GameError::GameNotRegistered),
+            }
+        },
+        Err(_) => Err(GameError::GameNotRegistered)
+    }
+
+  
 }

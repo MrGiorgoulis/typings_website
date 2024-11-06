@@ -9,7 +9,7 @@ use model::{
     game::{Game, NewGame},
     user::UserAuth,
 };
-use repository::database::{create_pg_pool, create_user, get_user, update_history};
+use repository::database::{create_pg_pool, create_user, get_user_by_name, update_history};
 use sqlx::types::Uuid;
 use std::{error::Error, str::FromStr};
 
