@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+
+*,*::before, *::after{
+    box-sizing: border-box
+}
+
+body{
+    margin: 0;
+    background-color: rgb(85, 91, 92);
+}
+
+.typer{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.header{
+    margin-top: 1rem;
+    font-weight: bold;
+    font-family: Roboto Mono;
+    font-size: 1.8rem;
+    color: rgb(227, 217, 198);
+}
+
+a {
+    text-decoration: none;
+}
+
+.command-center{
+    line-height: 1.6rem;
+    font-size:1rem ;
+    font-family: Roboto Mono;
+    word-spacing: 0.25rem;
+    margin: 0.4rem;
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-2vh);
+}
+
+
+
+.settings-bar{
+    word-spacing: 0.001rem;
+    margin-bottom: 0.3em;
+    color: #ed6b21;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+.length-selector{
+    margin-right: 6px;
+    margin-left: 6px;
+}
+
+.length-selector:hover{
+    cursor: pointer;
+}
+
+.main-container{
+    padding: 1rem;
+    color: #575d5e;
+    border-radius: 0.4rem;
+    background-color: rgb(227, 217, 198);
+}
+
+.input-container{
+    display: grid;
+    grid-template-columns: repeat(6,auto);
+}
+
+.text-input{
+    font-size: 1.1rem;
+    font-family: Roboto Mono;
+    grid-column: span 5;
+    height: 2.2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    background-color: #c9c0af;
+    border: none;
+    border-radius: 0.2rem;
+    padding: .5rem;
+}
+
+.redo-button{
+    height: 2.2rem;
+    margin-top: 0.6rem ;
+    margin-left: 0.6rem;
+    margin-right: 0;
+    background-color: #e96920;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+}
+
+.redo-button:hover{
+    cursor: pointer;
+}
+
+.account-icon {
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+section{
+    display: flex;
+    flex-direction:column;
+    background-size: 130%;
+    background-position: 50% 85%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+}
+
+.profile-box{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c0af;
+    width: 370px;
+    height: auto;
+    border: none;
+    /* border: 2px solid black; */
+    border-radius: 0.4rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.form-box{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c0af;
+    width: 370px;
+    height: auto;
+    border: none;
+    /* border: 2px solid black; */
+    border-radius: 0.4rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.form-inside{
+    align-items: center;
+    text-align: left;
+    width: 80%;
+}
+
+.label{
+    text-align: left;
+    color: #575d5e;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    display: inline-block;
+    width: 30%;
+
+}
+.mail-icon{
+    margin: 0;
+    padding-top: 10px;
+}
+.input-box{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid #575d5e;
+    text-align: right;
+
+
+}
+a:link{
+    color: red;
+}
+
+.email-box, .password-box, .confirm-password-box {
+    background: transparent;
+    /* border: dashed 2px #808687; */
+    border: none;
+    font-family: Roboto Mono;
+    height: 1.5rem;
+    margin-bottom: 1vh;
+    width: 68%;
+    border-radius: 0.2rem;
+
+}
+
+.login-register-header {
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-family: Roboto Mono;
+    font-size: 1.5rem;
+    color: #e96920;
+    text-decoration: none;
+}
+
+.login-register-button {
+    font-family: Roboto Mono;
+    height: 2rem;
+    background-color: #e96920;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.main-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-register-switch {
+
+    font-family: Roboto Mono;
+    background-color: #c9c0af;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+    width: max-content;
+    cursor: pointer;
+}
+
+.home-link {
+    color: #c9c0af;
+}
+
+.profile-box {
+    font-family: Roboto Mono;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    background-color: #c9c0af;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.profile-label {
+font-size: 18px;
+margin-bottom: 8px;
+color: #e96920;
+}
+
+.profile-value {
+font-size: 16px;
+font-weight: bold;
+color: #555;
+}
+
+.divider {
+width: 100%;
+border: none;
+border-top: 1px solid #575d5e;
+margin: 12px 0;
+}
+
