@@ -22,7 +22,6 @@ function SettingsBar() {
   const wpm = useContext(WpmContext);
 
   const [acc, setAcc] = useState(null);
-  const [keepResults, setKeepResults] = useState(false);
 
   const user_uuid = useContext(UserUuidContext);
 
@@ -56,13 +55,7 @@ function SettingsBar() {
     }
   }, [isActive]);
 
-  const handleGameEnd = async (e) => {
-    // e.preventDefault();
-
-    // user_uuid: String,
-    // wpm: f64,
-    // time: i32,
-
+  const handleGameEnd = async () => {
     const correctWords = isWordValid.filter(Boolean).length; // Count of valid words
     const computedWpm = (correctWords / (elapsedTime / 10)) * 60; // WPM calculation
     const computedAcc = (correctWords / wordCount) * 100; // Accuracy calculation

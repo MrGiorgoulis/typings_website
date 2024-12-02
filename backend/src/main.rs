@@ -4,7 +4,7 @@ mod repository;
 
 use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
-use handlers::handlers::{get_anonymous, login_user, post_game, register_user};
+use handlers::handlers::{get_anonymous, get_user, login_user, post_game, register_user};
 use repository::database::create_pg_pool;
 use std::error::Error;
 
@@ -31,8 +31,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .service(login_user)
             .service(post_game)
             .service(get_anonymous)
+            .service(get_user)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 8080))? // local testing
+    // .bind(("0.0.0.0", 8080))?
     .run()
     .await?;
 

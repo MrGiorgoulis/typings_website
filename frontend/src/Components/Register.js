@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js";
-import { SetIsLoggedInContext, IsLoggedInContext } from "../App";
+import { SetIsLoggedInContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { SetUserNameContext, SetUuidContext } from "../App";
 
@@ -9,7 +9,7 @@ function Register() {
   const setUuid = useContext(SetUuidContext);
   const setUserName = useContext(SetUserNameContext);
 
-  const [userUuid, setUserUuid] = useState("");
+  const [userUuid] = useState("");
   const [user_name, setuser_name] = useState("");
   const [user_passwd_hash, setPassword] = useState("");
   const [confirmPasswd, setConfirmPasswd] = useState("");
@@ -37,7 +37,7 @@ function Register() {
     const hashedPassword = CryptoJS.SHA256(user_passwd_hash).toString();
     const hasheConfirmPassword = CryptoJS.SHA256(confirmPasswd).toString();
 
-    if (hasheConfirmPassword == hashedPassword) {
+    if (hasheConfirmPassword === hashedPassword) {
       const userData = {
         user_name,
         user_passwd_hash: hashedPassword,

@@ -3,7 +3,7 @@ import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { SetUuidContext, SetUserNameContext } from "../App";
-import { SetIsLoggedInContext, IsLoggedInContext } from "../App";
+import { SetIsLoggedInContext } from "../App";
 
 function Login() {
   const setUuid = useContext(SetUuidContext);
@@ -12,6 +12,8 @@ function Login() {
 
   const [user_name, setuser_name] = useState("");
   const [user_passwd_hash, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const inputRefName = useRef(null);
   const inputRefPassword = useRef(null);
@@ -45,15 +47,15 @@ function Login() {
           user_passwd_hash: userData.user_passwd_hash,
         },
       });
+
       setIsLoggedIn(true);
       setUuid(response.data.uuid);
       setUserName(response.data.name);
-      console.log(response.data);
       navigate("/");
+
     } catch (error) {
-      console.error("Error logging in:", error.message); // Log only the error message
-      if (error.response) {
-        console.error("Server responded with:", error.response.data); // Log server's error response
+      if (error.status === 406) {
+        setErrorMessage("Wrong username or password.");
       }
     }
 
@@ -105,9 +107,15 @@ function Login() {
           </form>
         </div>
       </div>
+      {errorMessage && (
+        <div className="error-popup">
+          <p className="error-message">{errorMessage}</p>
+        </div>
+      )}
       <button className="login-register-switch" onClick={handleClick}>
         create an account
       </button>
+
     </section>
   );
 }

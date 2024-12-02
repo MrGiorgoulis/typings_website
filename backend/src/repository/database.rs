@@ -1,7 +1,7 @@
 use chrono::NaiveDateTime;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::types::Uuid;
-use sqlx::{ Pool, Postgres, Row};
+use sqlx::{Pool, Postgres, Row};
 use strum::Display;
 
 use crate::model::game::NewGame;
@@ -19,7 +19,9 @@ pub enum GameError {
 }
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
-    let database_url = "postgres://postgres:postgres@127.0.0.1:5432/typings_users";
+    // let database_url = "postgres://postgres:postgres@db:5432/typings_users";
+    let database_url = "postgres://postgres:postgres@127.0.0.1:5432/typings_users"; // local testing
+
     // let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     PgPoolOptions::new()
@@ -76,10 +78,7 @@ pub async fn get_user_by_name(
     }
 }
 
-pub async fn get_user_by_uuid(
-    user_uuid: Uuid,
-    pool: &sqlx::PgPool,
-) -> Result<User, UserError> {
+pub async fn get_user_by_uuid(user_uuid: Uuid, pool: &sqlx::PgPool) -> Result<User, UserError> {
     let q = "SELECT * FROM users WHERE user_uuid = $1";
     let query = sqlx::query(q).bind(user_uuid);
     let row = query.fetch_one(pool).await;
@@ -118,28 +117,27 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
         .execute(pool)
         .await;
 
-
     match res {
         Ok(_) => {
             match update_stats(game, pool).await {
-                Ok(_) => {},
+                Ok(_) => {}
                 Err(e) => {
-                    eprintln!{"Error updating user stats: {}", e}
+                    eprintln! {"Error updating user stats: {}", e}
                 }
             }
             Ok(())
-        },
+        }
         Err(_) => Err(GameError::GameNotRegistered),
     }
 }
 
 pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {
-
     let active_user = get_user_by_uuid(game.user_uuid, pool).await;
-    
+
     match active_user {
         Ok(user) => {
-            let new_wpm_average = (user.wpm_avg * user.total_games as f64 + game.wpm) / (user.total_games + 1) as f64;
+            let new_wpm_average =
+                (user.wpm_avg * user.total_games as f64 + game.wpm) / (user.total_games + 1) as f64;
             println!("{}", new_wpm_average);
             let new_total = user.total_games + 1;
             let new_wpm_best;
@@ -152,7 +150,7 @@ pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Game
             let query = "
                 UPDATE users 
                 SET 
-                    wpm_average = $1 / (total_games + 1),
+                    wpm_average = $1 ,
                     total_games = $2,
                     wpm_best = $3
                 WHERE user_uuid = $4
@@ -164,15 +162,13 @@ pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Game
                 .bind(game.user_uuid)
                 .execute(pool)
                 .await;
-            
+
             println!("{:?}", res);
             match res {
                 Ok(_) => Ok(()),
                 Err(_) => Err(GameError::GameNotRegistered),
             }
-        },
-        Err(_) => Err(GameError::GameNotRegistered)
+        }
+        Err(_) => Err(GameError::GameNotRegistered),
     }
-
-  
 }

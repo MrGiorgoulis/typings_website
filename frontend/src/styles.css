@@ -121,7 +121,6 @@ section{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 400px;
 }
 
 .profile-box{
@@ -250,16 +249,17 @@ a:link{
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 1rem;
     width: 300px;
     background-color: #c9c0af;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   }
   
 .profile-label {
-font-size: 18px;
+font-size: 1.5rem;
 margin-bottom: 8px;
+margin-top: 5px;
 color: #e96920;
 }
 
@@ -276,3 +276,35 @@ border-top: 1px solid #575d5e;
 margin: 12px 0;
 }
 
+.error-popup {
+    font-family: Roboto Mono;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin-top: 0.7rem;
+    text-align: center;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+.error-message {
+    font-size: 0.8rem;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+.logout-button {
+    color: #f44336;
+    font-weight: bold;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-family: Roboto Mono;
+    background-color: #c9c0af;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+}

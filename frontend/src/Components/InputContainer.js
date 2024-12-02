@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import RedoButton from './RedoButton'
 import { RandomWordsContext } from './MainContainer'
 import { WordCountContext, RedoStateContext } from './CommandCenter'
-import { SetWpmContext, ElapsedTimeContext, SetStopTimer, IsWordValidContext, SetIstWordValidContext } from '../App'
+import { SetStopTimer, IsWordValidContext, SetIstWordValidContext } from '../App'
 
 function InputContainer() {
 
-  const elapsedTime = useContext(ElapsedTimeContext)
-  const setWpm = useContext(SetWpmContext)
   const randomWords = useContext(RandomWordsContext)
   const wordCount = useContext(WordCountContext)
   const isWordValid = useContext(IsWordValidContext)

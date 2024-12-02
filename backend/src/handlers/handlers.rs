@@ -1,17 +1,22 @@
 use std::str::FromStr;
+use user::User;
 
 use actix_web::{
     get, post,
     web::{self, Json},
     HttpResponse, Responder,
 };
+use aws_smithy_http::query;
 use serde::{Deserialize, Serialize};
-use serde_json::json;
+use serde_json::{json, Value};
 use sqlx::types::Uuid;
 
 use crate::{
-    model::{game::NewGame, user::UserAuth},
-    repository::database::{create_user, get_user_by_name, update_history},
+    model::{
+        game::NewGame,
+        user::{self, UserAuth},
+    },
+    repository::database::{create_user, get_user_by_name, get_user_by_uuid, update_history},
 };
 
 #[derive(Deserialize, Serialize)]
@@ -27,26 +32,45 @@ pub struct PostGameRequest {
     time: f64,
 }
 
+#[derive(Deserialize, Serialize)]
+pub struct GetUserRequest {
+    user_uuid: String,
+}
+
+#[get("/user")]
+pub async fn get_user(
+    query: web::Query<GetUserRequest>, // Use query extractor
+    pool: web::Data<sqlx::PgPool>,
+) -> impl Responder {
+    match get_user_by_uuid(Uuid::parse_str(query.user_uuid.as_str()).unwrap(), &pool).await {
+        Ok(user) => HttpResponse::Accepted().json(create_response_body(user)),
+        Err(_) => HttpResponse::NotAcceptable().body("Could not get User details"),
+    }
+}
+
 #[get("/get_anonymous")]
 pub async fn get_anonymous(
     _query: web::Query<UserRequest>, // Use query extractor
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
     match get_user_by_name("Anonymous".to_string(), "".to_string(), &pool).await {
-        Ok(user) => {
-            let response_body = json!({
-                "uuid": user.uuid.to_string(),
-                "name": user.name,
-                "total_games": user.total_games,
-                "wpm_avg": user.wpm_avg,
-                "wpm_best": user.wpm_best,
-                "created_at": user.created_at.format("%Y-%m-%d %H:%M:%S").to_string(),
-                "role": user.role,
-            });
-            HttpResponse::Accepted().json(response_body)
-        }
+        Ok(user) => HttpResponse::Accepted().json(create_response_body(user)),
         Err(_) => HttpResponse::NotAcceptable().body("User name or password is not correct"),
     }
+}
+
+pub fn create_response_body(user: User) -> Value {
+    let response_body = json!({
+        "uuid": user.uuid.to_string(),
+        "name": user.name,
+        "total_games": user.total_games,
+        "wpm_avg": user.wpm_avg,
+        "wpm_best": user.wpm_best,
+        "created_at": user.created_at.format("%Y-%m-%d %H:%M:%S").to_string(),
+        "role": user.role,
+    });
+
+    response_body
 }
 
 #[get("/login")]

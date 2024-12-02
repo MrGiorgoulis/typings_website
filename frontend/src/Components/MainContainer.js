@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import FetchData from './FetchData'
 import InputContainer from './InputContainer'
 import { RedoStateContext } from './CommandCenter'
-import { IsWordValidContext, SetIstWordValidContext } from '../App'
+import { SetIstWordValidContext } from '../App'
 
 export const RandomWordsContext = React.createContext()
 export const SetRandomWordsContext = React.createContext()
@@ -11,7 +11,6 @@ function MainContainer() {
 
   const [randomWords, setRandomWords] = useState([])
 
-  const isWordValid = useContext(IsWordValidContext)
   const setIsWordValid = useContext(SetIstWordValidContext)
   const redoState = useContext(RedoStateContext)
 
