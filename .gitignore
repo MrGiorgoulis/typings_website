@@ -1,8 +1,9 @@
-/react_frontend/node_modules/
-/rust_backend/target/
+/frontend/node_modules/
+/backend/target/
 *.rs.bk
 *.swp
+/.vscode
 /.DS_Store
-/react_frontend/.DS_Store
-/rust_backend/.DS_Store
+/frontend/.DS_Store
+/backend/.DS_Store
 /postgres_configs.txt

@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(50) DEFAULT 'user'
 );
 
+CREATE SEQUENCE IF NOT EXISTS game_number_seq;
+
 -- Create game_history table with nullable user_uuid for anonymous users
 CREATE TABLE IF NOT EXISTS game_history (
     user_uuid UUID,  -- Nullable to allow anonymous players

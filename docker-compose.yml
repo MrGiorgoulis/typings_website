@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: typings_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: typings_users
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/typings_users
+    volumes:
+      - ./backend/migrations:/app/migrations
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "sqlx migrate run && ./typings_actix_postgres"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_BACKEND_URL=http://backend:8080
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      REACT_APP_BACKEND_URL: http://backend:8080
+
+volumes:
+  pgdata:
