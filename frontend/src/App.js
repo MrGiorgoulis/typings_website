@@ -7,7 +7,7 @@ import Register from "./Components/Register";
 import Profile from "./Components/Profile";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
-
+import UserGameHistory from "./Components/UserGameHistory";
 
 export const IsTimerActive = React.createContext();
 export const SetStopTimer = React.createContext();
@@ -36,14 +36,17 @@ function App() {
   useEffect(() => {
     const handleLogin = async (e) => {
       // e.preventDefault(); // Prevent form submission and page reload
-  
+
       try {
-        const response = await axios.get("http://localhost:8080/get_anonymous", {
-          params: {
-            user_name: '',
-            user_passwd_hash: ''
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:8080/get_anonymous",
+          {
+            params: {
+              user_name: "",
+              user_passwd_hash: "",
+            },
+          }
+        );
         setUserUuid(response.data.uuid);
         setuser_name(response.data.name);
         console.log(response.data);
@@ -53,8 +56,6 @@ function App() {
           console.error("Server responded with:", error.response.data); // Log server's error response
         }
       }
-  
-      // e.preventDefault();
     };
 
     handleLogin();
@@ -110,6 +111,10 @@ function App() {
                                       <Route
                                         path="/profile"
                                         element={<Profile />}
+                                      ></Route>
+                                      <Route
+                                        path="/game_history"
+                                        element={<UserGameHistory />}
                                       ></Route>
                                     </Routes>
                                   </SetIstWordValidContext.Provider>

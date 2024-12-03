@@ -1,4 +1,5 @@
 use chrono::NaiveDateTime;
+use serde::de::value::Error;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::types::Uuid;
 use sqlx::{Pool, Postgres, Row};
@@ -17,6 +18,7 @@ pub enum UserError {
 pub enum GameError {
     GameNotRegistered,
 }
+
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
     // let database_url = "postgres://postgres:postgres@db:5432/typings_users";
@@ -129,6 +131,23 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
         }
         Err(_) => Err(GameError::GameNotRegistered),
     }
+}
+
+pub async fn get_history_by_uuid(uuid: Uuid, pool: &sqlx::PgPool) -> Result<(),Error> {
+
+
+    let query = "
+                SELECT * FROM game_history 
+                WHERE user_uuid = $1
+                LIMIT 5;
+            ";
+
+    let res = sqlx::query(query)
+    .bind(uuid)
+    .execute(pool)
+    .await;
+
+    Ok(())
 }
 
 pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {
