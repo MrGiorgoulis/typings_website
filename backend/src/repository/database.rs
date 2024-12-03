@@ -1,6 +1,7 @@
 use chrono::NaiveDateTime;
 use serde::de::value::Error;
-use sqlx::postgres::PgPoolOptions;
+use serde::Serialize;
+use sqlx::postgres::{PgPoolOptions, PgRow};
 use sqlx::types::Uuid;
 use sqlx::{Pool, Postgres, Row};
 use strum::Display;
@@ -19,6 +20,13 @@ pub enum GameError {
     GameNotRegistered,
 }
 
+#[derive(Serialize)]
+struct GameHistory {
+    game_number: i32,
+    WPM: f32,
+    time: i32,
+    timestamp: String, // Use String for JSON serialization
+}
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
     // let database_url = "postgres://postgres:postgres@db:5432/typings_users";
@@ -74,7 +82,7 @@ pub async fn get_user_by_name(
             Ok(user)
         }
         Err(_) => {
-            println!("USER NOT RETRIEVED");
+            println!("USresER NOT RETRIEVED");
             Err(UserError::UserNotFound)
         }
     }
@@ -133,21 +141,17 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
     }
 }
 
-pub async fn get_history_by_uuid(uuid: Uuid, pool: &sqlx::PgPool) -> Result<(),Error> {
-
-
+pub async fn get_history_by_uuid(uuid: Uuid, pool: &sqlx::PgPool) -> Result<Vec<PgRow>, Error> {
     let query = "
                 SELECT * FROM game_history 
                 WHERE user_uuid = $1
                 LIMIT 5;
             ";
 
-    let res = sqlx::query(query)
-    .bind(uuid)
-    .execute(pool)
-    .await;
+    let res = sqlx::query(query).bind(uuid).fetch_all(pool).await;
 
-    Ok(())
+    println!("{:?}", res);
+    Ok(res.unwrap())
 }
 
 pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {

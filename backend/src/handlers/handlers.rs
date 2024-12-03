@@ -1,3 +1,4 @@
+use chrono::prelude;
 use std::str::FromStr;
 use user::User;
 
@@ -16,7 +17,9 @@ use crate::{
         game::NewGame,
         user::{self, UserAuth},
     },
-    repository::database::{create_user, get_history_by_uuid, get_user_by_name, get_user_by_uuid, update_history},
+    repository::database::{
+        create_user, get_history_by_uuid, get_user_by_name, get_user_by_uuid, update_history,
+    },
 };
 
 #[derive(Deserialize, Serialize)]
@@ -84,12 +87,14 @@ pub async fn get_user_history(
     query: web::Query<UserHistoryRequest>, // Use query extractor
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
-
-    // match get_history_by_uuid(query.user_uuid.clone(), &pool).await {
-    //     Ok(history) => {},
-    //     Err(e) => {},
-    // }
-
+    match get_history_by_uuid(Uuid::parse_str(query.user_uuid.as_str()).unwrap(), &pool).await {
+        Ok(history) => {
+            println!("{:?}", history);
+        }
+        Err(e) => {
+            println!("ERROR: {}", e)
+        }
+    }
 
     HttpResponse::NotAcceptable().body("User name or password is not correct")
 }
