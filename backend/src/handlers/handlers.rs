@@ -1,4 +1,3 @@
-use chrono::prelude;
 use std::str::FromStr;
 use user::User;
 
@@ -7,10 +6,9 @@ use actix_web::{
     web::{self, Json},
     HttpResponse, Responder,
 };
-use aws_smithy_http::query;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use sqlx::types::Uuid;
+use sqlx::{prelude::FromRow, types::Uuid};
 
 use crate::{
     model::{
@@ -25,7 +23,17 @@ use crate::{
 #[derive(Deserialize, Serialize)]
 pub struct UserHistoryRequest {
     user_uuid: String,
-    limit: u64,
+    limit: i32,
+    page: i32,
+}
+
+#[derive(Serialize, FromRow, Debug)]
+pub struct GameHistory {
+    pub user_uuid: Uuid,
+    pub game_number: i32,
+    pub wpm: f64,
+    pub time: f64,
+    pub timestamp: chrono::NaiveDateTime,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -87,16 +95,17 @@ pub async fn get_user_history(
     query: web::Query<UserHistoryRequest>, // Use query extractor
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
-    match get_history_by_uuid(Uuid::parse_str(query.user_uuid.as_str()).unwrap(), &pool).await {
-        Ok(history) => {
-            println!("{:?}", history);
-        }
-        Err(e) => {
-            println!("ERROR: {}", e)
-        }
+    match get_history_by_uuid(
+        Uuid::parse_str(query.user_uuid.as_str()).unwrap(),
+        query.limit,
+        query.page,
+        &pool,
+    )
+    .await
+    {
+        Ok(history) => HttpResponse::Ok().json(history),
+        Err(e) => HttpResponse::InternalServerError().json(format!("Internal server error: {}", e)),
     }
-
-    HttpResponse::NotAcceptable().body("User name or password is not correct")
 }
 
 #[get("/login")]

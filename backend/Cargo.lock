@@ -472,6 +472,7 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
+ "serde",
  "wasm-bindgen",
  "windows-targets 0.52.6",
 ]
@@ -1813,7 +1814,7 @@ dependencies = [
  "tokio-stream",
  "tracing",
  "url",
- "uuid 1.11.0",
+ "uuid",
  "webpki-roots",
 ]
 
@@ -1896,7 +1897,7 @@ dependencies = [
  "stringprep",
  "thiserror",
  "tracing",
- "uuid 1.11.0",
+ "uuid",
  "whoami",
 ]
 
@@ -1936,7 +1937,7 @@ dependencies = [
  "stringprep",
  "thiserror",
  "tracing",
- "uuid 1.11.0",
+ "uuid",
  "whoami",
 ]
 
@@ -1962,7 +1963,7 @@ dependencies = [
  "sqlx-core",
  "tracing",
  "url",
- "uuid 1.11.0",
+ "uuid",
 ]
 
 [[package]]
@@ -2235,7 +2236,7 @@ dependencies = [
  "strum",
  "strum_macros",
  "tokio",
- "uuid 0.8.2",
+ "uuid",
 ]
 
 [[package]]
@@ -2290,19 +2291,13 @@ dependencies = [
 
 [[package]]
 name = "uuid"
-version = "0.8.2"
+version = "1.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
+checksum = "f8c5f0a0af699448548ad1a2fbf920fb4bee257eae39953ba95cb84891a0446a"
 dependencies = [
  "getrandom",
  "serde",
 ]
-
-[[package]]
-name = "uuid"
-version = "1.11.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8c5f0a0af699448548ad1a2fbf920fb4bee257eae39953ba95cb84891a0446a"
 
 [[package]]
 name = "vcpkg"

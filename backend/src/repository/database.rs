@@ -6,6 +6,7 @@ use sqlx::types::Uuid;
 use sqlx::{Pool, Postgres, Row};
 use strum::Display;
 
+use crate::handlers::handlers::GameHistory;
 use crate::model::game::NewGame;
 use crate::model::user::{User, UserAuth};
 
@@ -18,14 +19,6 @@ pub enum UserError {
 #[derive(Debug, Display)]
 pub enum GameError {
     GameNotRegistered,
-}
-
-#[derive(Serialize)]
-struct GameHistory {
-    game_number: i32,
-    WPM: f32,
-    time: i32,
-    timestamp: String, // Use String for JSON serialization
 }
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
@@ -141,17 +134,28 @@ pub async fn update_history(game: NewGame, pool: &sqlx::PgPool) -> Result<(), Ga
     }
 }
 
-pub async fn get_history_by_uuid(uuid: Uuid, pool: &sqlx::PgPool) -> Result<Vec<PgRow>, Error> {
+pub async fn get_history_by_uuid(
+    uuid: Uuid,
+    limit: i32,
+    page: i32,
+    pool: &sqlx::PgPool,
+) -> Result<Vec<GameHistory>, sqlx::Error> {
     let query = "
                 SELECT * FROM game_history 
-                WHERE user_uuid = $1
-                LIMIT 5;
+                WHERE user_uuid = $1 
+                LIMIT $2 
+                OFFSET $3;
             ";
 
-    let res = sqlx::query(query).bind(uuid).fetch_all(pool).await;
+    let history = sqlx::query_as::<_, GameHistory>(query)
+        .bind(uuid)
+        .bind(limit)
+        .bind(page * limit)
+        .fetch_all(pool)
+        .await;
+    println!("{:?}", history);
 
-    println!("{:?}", res);
-    Ok(res.unwrap())
+    Ok(history.unwrap())
 }
 
 pub async fn update_stats(game: NewGame, pool: &sqlx::PgPool) -> Result<(), GameError> {
