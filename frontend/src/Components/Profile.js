@@ -72,7 +72,8 @@ function Profile() {
           <p className="stats-label">best WPM: {parseFloat(best_wpm)}</p>
         </div>
       </div>
-      <button className="logout-button" onClick={() => logout()}>Logout</button>
+      <button className="view-history-button" onClick={() => navigate("/game_history")}>view history</button>
+      <button className="logout-button" onClick={() => logout()}>logout</button>
     </section>
   );
 }

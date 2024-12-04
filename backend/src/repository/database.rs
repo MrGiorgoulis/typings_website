@@ -143,6 +143,7 @@ pub async fn get_history_by_uuid(
     let query = "
                 SELECT * FROM game_history 
                 WHERE user_uuid = $1 
+                ORDER BY game_number DESC
                 LIMIT $2 
                 OFFSET $3;
             ";

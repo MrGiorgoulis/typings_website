@@ -131,7 +131,7 @@ function App() {
             </UserUuidContext.Provider>
           </SetUserNameContext.Provider>
         </UserNameContext.Provider>
-        <div className="footer">user guide / themes</div>
+        <div className="footer"></div>
       </div>
     </BrowserRouter>
   );
