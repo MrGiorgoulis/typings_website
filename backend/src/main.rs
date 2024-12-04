@@ -4,6 +4,7 @@ mod repository;
 
 use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
+use env_logger::Env;
 use handlers::handlers::{
     get_anonymous, get_user, get_user_history, login_user, post_game, register_user,
 };
@@ -24,7 +25,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .wrap(
                 Cors::default()
                     .allow_any_origin()
-                    .allowed_methods(vec!["GET", "POST", "PUT"])
+                    .allowed_methods(vec!["GET", "POST"])
                     .allow_any_header()
                     .max_age(36000),
             )
@@ -36,8 +37,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .service(get_user)
             .service(get_user_history)
     })
-    .bind(("127.0.0.1", 8080))? // local testing
-    // .bind(("0.0.0.0", 8080))?
+    // .bind(("127.0.0.1", 8080))? // local testing
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await?;
 

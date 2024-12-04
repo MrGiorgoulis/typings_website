@@ -31,7 +31,7 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission and page reload
+    e.preventDefault();
     const hashedPassword = CryptoJS.SHA256(user_passwd_hash).toString();
 
     const userData = {

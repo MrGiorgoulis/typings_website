@@ -42,7 +42,7 @@ pub struct UserRequest {
     user_passwd_hash: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct PostGameRequest {
     user_uuid: String,
     wpm: f64,
@@ -183,6 +183,7 @@ pub async fn post_game(
     request: Json<PostGameRequest>,
     pool: web::Data<sqlx::PgPool>,
 ) -> impl Responder {
+    println!("{:?}", request);
     let new_game = NewGame::new(
         Uuid::from_str(&request.user_uuid).unwrap(),
         request.wpm,

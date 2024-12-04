@@ -35,8 +35,6 @@ function App() {
 
   useEffect(() => {
     const handleLogin = async (e) => {
-      // e.preventDefault(); // Prevent form submission and page reload
-
       try {
         const response = await axios.get(
           "http://localhost:8080/get_anonymous",
@@ -51,15 +49,15 @@ function App() {
         setuser_name(response.data.name);
         console.log(response.data);
       } catch (error) {
-        console.error("Error Setting Default User in:", error.message); // Log only the error message
+        console.error("Error Setting Default User in:", error.message);
         if (error.response) {
-          console.error("Server responded with:", error.response.data); // Log server's error response
+          console.error("Server responded with:", error.response.data);
         }
       }
     };
 
     handleLogin();
-  }, []); // The empty array ensures this effect runs only once
+  }, []); 
 
   return (
     <BrowserRouter>

@@ -22,8 +22,8 @@ pub enum GameError {
 }
 
 pub async fn create_pg_pool() -> Pool<Postgres> {
-    // let database_url = "postgres://postgres:postgres@db:5432/typings_users";
-    let database_url = "postgres://postgres:postgres@127.0.0.1:5432/typings_users"; // local testing
+    let database_url = "postgres://postgres:postgres@db:5432/typings_users";
+    // let database_url = "postgres://postgres:postgres@127.0.0.1:5432/typings_users"; // local testing
 
     // let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
