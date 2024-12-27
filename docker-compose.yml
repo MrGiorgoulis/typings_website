@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   db:
     image: postgres:latest
@@ -13,6 +14,7 @@ services:
       - "5432:5432"
 
   backend:
+    image: kurgiogis/backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -26,9 +28,9 @@ services:
       - "8080:8080"
     command: >
       sh -c "sqlx migrate run && ./typings_actix_postgres"
-      
 
   frontend:
+    image: kurgiorgis/frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
