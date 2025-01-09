@@ -19,7 +19,7 @@ function Profile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:8080/user", {
+        const response = await axios.get("http://192.168.49.2:30081/user", {
           params: {
             user_uuid: user_uuid
           },
@@ -40,7 +40,7 @@ function Profile() {
 
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get_anonymous", {
+      const response = await axios.get("http://192.168.49.2:30081/get_anonymous", {
         params: {
           user_name: '',
           user_passwd_hash: ''

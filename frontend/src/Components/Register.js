@@ -47,7 +47,7 @@ function Register() {
         console.log(userData);
         console.log(hashedPassword);
         const response = await axios.post(
-          "http://localhost:8080/register",
+          "http://192.168.49.2:30081/register",
           userData,
           {
             headers: {

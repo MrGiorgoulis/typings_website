@@ -18,7 +18,7 @@ function UserGameHistory() {
   const fetchGameHistory = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:8080/user_history', {
+      const response = await axios.get('http://192.168.49.2:30081/user_history', {
         params: {
           user_uuid: user_uuid,
           limit: limit,

@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  0001_create_initial_tables.sql: "-- Add migration script here\n\n-- Create users table\nCREATE TABLE IF NOT EXISTS users (\n    user_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    user_name VARCHAR(255) NOT NULL UNIQUE,\n    total_games INT DEFAULT 0,\n    WPM_average FLOAT DEFAULT 0,\n    WPM_best FLOAT DEFAULT 0,\n    password_hash TEXT NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    role VARCHAR(50) DEFAULT 'user'\n);\n\nCREATE SEQUENCE IF NOT EXISTS game_number_seq;\n\n-- Create game_history table with nullable user_uuid for anonymous users\nCREATE TABLE IF NOT EXISTS game_history (\n    user_uuid UUID,  -- Nullable to allow anonymous players\n    game_number INT NOT NULL DEFAULT nextval('game_number_seq'),\n    WPM FLOAT NOT NULL,\n    time FLOAT NOT NULL,  -- Time in seconds or minutes, adjust as needed\n    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    PRIMARY KEY (user_uuid, game_number),\n    FOREIGN KEY (user_uuid) REFERENCES users(user_uuid) ON DELETE CASCADE\n);\n\n-- Insert a default \"Anonymous\" user if it doesn't already exist\nINSERT INTO users (user_name, password_hash) \nVALUES ('Anonymous', '') \nON CONFLICT (user_name) DO NOTHING;  -- Avoid duplicate entries"
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: backend
+  name: backend-cm0

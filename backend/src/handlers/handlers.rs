@@ -1,3 +1,4 @@
+use chrono::{NaiveDateTime, Utc};
 use std::str::FromStr;
 use user::User;
 
@@ -75,7 +76,6 @@ pub async fn get_anonymous(
         Err(_) => HttpResponse::NotAcceptable().body("User name or password is not correct"),
     }
 }
-
 pub fn create_response_body(user: User) -> Value {
     let response_body = json!({
         "uuid": user.uuid.to_string(),

@@ -37,7 +37,7 @@ function App() {
     const handleLogin = async (e) => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/get_anonymous",
+          "http://192.168.49.2:30081/get_anonymous",
           {
             params: {
               user_name: "",
@@ -50,6 +50,7 @@ function App() {
         console.log(response.data);
       } catch (error) {
         console.error("Error Setting Default User in:", error.message);
+        console.error("Error: ", error);
         if (error.response) {
           console.error("Server responded with:", error.response.data);
         }

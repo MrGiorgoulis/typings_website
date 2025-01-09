@@ -73,7 +73,7 @@ function SettingsBar() {
     try {
       console.log(userData);
       const response = await axios.post(
-        "http://localhost:8080/post_game",
+        "http://192.168.49.2:30081/post_game",
         userData,
         {
           headers: {
